@@ -3,181 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langkah-langkah Instalasi Pop!_OS Dual Boot dengan Windows 11</title>
+    <title>Instalasi Pop!_OS Dual Boot - Panduan Lengkap</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>langkah-langkah Instalasi Pop!_OS Dual Boot dengan Windows 11</h1>
-        <nav>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Pop!_OS Guide</h2>
+                <p>Tutorial Dual Boot</p>
+            </div>
+            
+            <div class="menu-label">Daftar Isi</div>
             <ul>
-                <li><a href="index.html">Prosedur Instalasi</a></li>
-                <li><a href="popos-info.html">Tentang Pop!_OS</a></li>
+                <li><a href="#intro" >Pendahuluan</a></li>
+                <li><a href="#persiapan">1. Persiapan</a></li>
+                <li><a href="#partisi-win">2. Partisi Windows</a></li>
+                <li><a href="#bootable">3. Buat Bootable</a></li>
+                <li><a href="#bios">4. BIOS & Boot</a></li>
+                <li><a href="#instalasi">5. Instalasi Linux</a></li>
+                <li><a href="#grub">6. Setup Dual Boot</a></li>
+                <li><a href="#profil">Profil Penulis</a></li>
+            </ul>
+
+            <div class="menu-label">Halaman Lain</div>
+            <ul>
+                <li><a href="popos-info.html" style="color: var(--accent);">Tentang Pop!_OS</a></li>
+                <li><a href="tugas-os.html" style="color: var(--accent);">Lihat Tugas Sistem Operasi</a></li>
             </ul>
         </nav>
-    </header>
 
-    <main>
-        <section class="intro">
-            <p>Panduan ini akan memandu Anda langkah demi langkah dalam menginstal Distro Linux Pop!_OS sebagai sistem operasi dual boot (berdampingan) dengan Windows 11. Panduan ini berdasarkan video YouTube dari channel Levelup iD: <a href="http://www.youtube.com/watch?v=ZJmIqr_H7p0&t=8" target="_blank">WINDOWS 11 HATI HATI! Cobain POP OS Distro Linux Yang Keren dan LENGKAP DUALBOOT</a>.</p>
-            <p>Pastikan Anda sudah mencadangkan data penting Anda sebelum memulai!</p>
-        </section>
+        <main class="content">
+            <header>
+                <h1>Langkah Instalasi Pop!_OS</h1>
+                <p>Panduan Dual Boot berdampingan dengan Windows 11.</p>
+            </header>
 
-        <section class="step">
-            <h2>1. Persiapan (Unduh Bahan)</h2>
-            <p>Langkah pertama adalah mengunduh file ISO Pop!_OS dan aplikasi untuk membuat bootable USB drive.</p>
-            <h3>1.1. Unduh Pop!_OS</h3>
-            <ul>
-                <li>Kunjungi situs web resmi Pop!_OS: <a href="https://pop.system76.com/" target="_blank">pop.system76.com</a>.</li>
-                <li>Pilih versi yang sesuai dengan GPU Anda (ada versi khusus untuk Nvidia jika Anda memiliki kartu grafis Nvidia).</li>
-            </ul>
-            <figure>
-                <img src="1.png" alt="Screenshot Halaman Download Pop!_OS">
-                <figcaption>Pilih dan unduh versi Pop!_OS yang sesuai.</figcaption>
-            </figure>
-            <h3>1.2. Unduh Aplikasi Flashing (Balena Etcher)</h3>
-            <ul>
-                <li>Unduh Balena Etcher dari situs resminya (<a href="https://www.balena.io/etcher/" target="_blank">balena.io/etcher</a>) atau gunakan Rufus sebagai alternatif.</li>
-            </ul>
-            <figure>
-                <img src="2.png" alt="Screenshot Balena Etcher">
-                <figcaption>Tampilan Balena Etcher untuk membuat bootable USB.</figcaption>
-            </figure>
-        </section>
+            <section id="intro" class="card">
+                <h2>Pendahuluan</h2>
+                <p>Panduan ini akan memandu Anda langkah demi langkah dalam menginstal Distro Linux Pop!_OS sebagai sistem operasi dual boot dengan Windows 11. Panduan ini berdasarkan video YouTube dari channel Levelup iD.</p>
+                <p style="color: #fbbf24;"><strong>PENTING:</strong> Pastikan Anda sudah mencadangkan (backup) data penting Anda sebelum memulai!</p>
+            </section>
 
-        <section class="step">
-            <h2>2. Membuat Partisi Kosong di Windows</h2>
-            <p>Anda perlu menyiapkan ruang kosong di hard drive Anda untuk instalasi Pop!_OS.</p>
-            <ul>
-                <li>Klik kanan pada ikon menu Start Windows, lalu pilih *Disk Management*.</li>
-            </ul>
-            <figure>
-                <img src="3.png" alt="Screenshot Disk Management Windows">
-                <figcaption>Buka Disk Management di Windows.</figcaption>
-            </figure>
-            <ul>
-                <li>Pilih drive yang memiliki banyak ruang kosong (misalnya C: atau D:).</li>
-                <li>Klik kanan pada drive tersebut, lalu pilih *"Shrink Volume..."*.</li>
-                <li>Tentukan ukuran ruang yang ingin Anda alokasikan untuk Pop!_OS (misalnya 150000 MB untuk 150GB).</li>
-                <li>Klik *"Shrink"*. Ini akan membuat "Unallocated space".</li>
-            </ul>
-            <figure>
-                <img src="4.png" alt="Screenshot Shrink Volume di Disk Management">
-                <figcaption>Menyusutkan volume untuk membuat ruang kosong.</figcaption>
-            </figure>
-        </section>
+            <section id="persiapan" class="card">
+                <h2>1. Persiapan (Unduh Bahan)</h2>
+                <p>Langkah pertama adalah mengunduh file ISO Pop!_OS dan aplikasi untuk membuat bootable USB drive.</p>
+                
+                <h3>1.1. Unduh Pop!_OS</h3>
+                <ul>
+                    <li>Kunjungi situs web resmi: <a href="https://pop.system76.com/" target="_blank" style="color:var(--accent)">pop.system76.com</a>.</li>
+                    <li>Pilih versi yang sesuai dengan GPU Anda (pilih versi NVIDIA jika laptop menggunakan kartu grafis NVIDIA).</li>
+                </ul>
+                <figure>
+                    <img src="1.png" alt="Download Pop!_OS">
+                    <figcaption>Pilih dan unduh versi Pop!_OS yang sesuai.</figcaption>
+                </figure>
 
-        <section class="step">
-            <h2>3. Membuat Bootable USB Drive</h2>
-            <p>Gunakan Balena Etcher untuk mentransfer file ISO Pop!_OS ke flash drive Anda.</p>
-            <ul>
-                <li>Pasang flash drive Anda (minimal 8GB).</li>
-                <li>Buka Balena Etcher.</li>
-                <li>Klik *"Flash from file"* dan pilih file ISO Pop!_OS yang sudah Anda unduh.</li>
-                <li>Klik *"Select target"* dan pilih flash drive Anda.</li>
-                <li>Klik *"Flash!"* dan tunggu prosesnya selesai.</li>
-            </ul>
-            <figure>
-                <img src="5.png" alt="Screenshot Balena Etcher Proses Flashing">
-                <figcaption>Proses pembuatan bootable USB dengan Balena Etcher.</figcaption>
-            </figure>
-        </section>
+                <h3>1.2. Unduh Balena Etcher</h3>
+                <ul>
+                    <li>Unduh dari situs resmi: <a href="https://www.balena.io/etcher/" target="_blank" style="color:var(--accent)">balena.io/etcher</a>.</li>
+                </ul>
+                <figure>
+                    <img src="2.png" alt="Balena Etcher">
+                    <figcaption>Tampilan Balena Etcher untuk membuat bootable USB.</figcaption>
+                </figure>
+            </section>
 
-        <section class="step">
-            <h2>4. Proses Instalasi Pop!_OS</h2>
-            <h3>4.1. Masuk ke BIOS/UEFI dan Atur Boot Priority</h3>
-            <ul>
-                <li>Restart PC Anda.</li>
-                <li>Tekan tombol yang sesuai (biasanya F2, F10, F12, atau Del) berulang kali saat PC menyala untuk masuk ke menu BIOS/UEFI.</li>
-            </ul>
-            <figure>
-                <img src="6.png" alt="Screenshot Menu BIOS/UEFI">
-                <figcaption>Tampilan umum menu BIOS/UEFI.</figcaption>
-            </figure>
-            <ul>
-                <li>Di dalam BIOS/UEFI, navigasikan ke bagian *Boot Options* atau *Boot Priority*.</li>
-                <li>Ubah urutan boot agar *UEFI USB Drive* Anda menjadi pilihan pertama.</li>
-                <li>Simpan perubahan dan keluar dari BIOS/UEFI.</li>
-            </ul>
-            <figure>
-                <img src="7.png" alt="Screenshot Boot Priority di BIOS/UEFI">
-                <figcaption>Mengatur boot priority ke USB drive.</figcaption>
-            </figure>
+            <section id="partisi-win" class="card">
+                <h2>2. Membuat Partisi Kosong di Windows</h2>
+                <p>Buka <strong>Disk Management</strong> (Klik kanan Start Menu), pilih drive (C: atau D:), lalu klik kanan dan pilih <strong>"Shrink Volume"</strong>.</p>
+                <figure>
+                    <img src="3.png" alt="Disk Management">
+                    <figcaption>Buka Disk Management di Windows.</figcaption>
+                </figure>
+                <p>Tentukan ukuran (misal 150000 MB untuk 150GB), lalu klik Shrink.</p>
+                <figure>
+                    <img src="4.png" alt="Shrink Volume">
+                    <figcaption>Menyusutkan volume untuk membuat Unallocated Space.</figcaption>
+                </figure>
+            </section>
 
-            <h3>4.2. Memulai Instalasi Pop!_OS</h3>
-            <ul>
-                <li>PC akan boot dari USB drive Anda. Ikuti petunjuk di layar untuk memilih bahasa dan layout keyboard.</li>
-                <li>Saat tiba di layar "How would you like to install?", pilih *"Custom (Advanced)"*. Ini sangat penting untuk dual boot.</li>
-            </ul>
-            <figure>
-                <img src="8.png" alt="Screenshot Pilihan Instalasi Custom di Pop!_OS">
-                <figcaption>Pilih "Custom (Advanced)" untuk pengaturan partisi manual.</figcaption>
-            </figure>
+            <section id="bootable" class="card">
+                <h2>3. Membuat Bootable USB</h2>
+                <p>Buka Balena Etcher, pilih file ISO, pilih Flashdisk target, lalu klik <strong>Flash</strong>.</p>
+                <figure>
+                    <img src="5.png" alt="Proses Flashing">
+                    <figcaption>Proses pembuatan bootable USB dengan Balena Etcher.</figcaption>
+                </figure>
+            </section>
 
-            <h3>4.3. Membuat Partisi Linux</h3>
-            <p>Pada ruang "Unallocated" yang telah Anda buat sebelumnya, Anda akan membuat 4 partisi baru:</p>
-            <ol>
-                <li>
-                    <strong>Partisi EFI (Boot)</strong>
-                    <ul>
-                        <li>Ukuran: <strong>1GB</strong></li>
-                        <li>Tipe: *FAT32*</li>
-                        <li>Gunakan sebagai: *"Boot / EFI System Partition"*</li>
-                    </ul>
-                    <figure>
-                        <img src="9.png" alt="Screenshot Membuat Partisi EFI">
-                        <figcaption>Konfigurasi partisi EFI.</figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <strong>Partisi Swap</strong>
-                    <ul>
-                        <li>Ukuran: Setidaknya sama dengan RAM Anda, atau sekitar <strong>8GB</strong>.</li>
-                        <li>Tipe: *Linux Swap*</li>
-                    </ul>
-                    <figure>
-                        <img src="10.png" alt="Screenshot Membuat Partisi Swap">
-                        <figcaption>Konfigurasi partisi Swap.</figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <strong>Partisi Root (/)</strong>
-                    <ul>
-                        <li>Ukuran: Minimal <strong>30GB-50GB</strong> (contoh di video 50GB).</li>
-                        <li>Tipe: *Ext4*</li>
-                        <li>Gunakan sebagai: *"/" (root)*</li>
-                    </ul>
-                    <figure>
-                        <img src="11.png" alt="Screenshot Membuat Partisi Root">
-                        <figcaption>Konfigurasi partisi Root.</figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <strong>Partisi Home (/home)</strong>
-                    <ul>
-                        <li>Ukuran: Gunakan *sisa ruang* yang tersedia (misalnya sekitar 90GB).</li>
-                        <li>Tipe: *Ext4*</li>
-                        <li>Gunakan sebagai: *"/home"*</li>
-                    </ul>
-                    <figure>
-                        <img src="12.png" alt="Screenshot Membuat Partisi Home">
-                        <figcaption>Konfigurasi partisi Home.</figcaption>
-                    </figure>
-                </li>
-            </ol>
-            <p>Setelah partisi dibuat dan diatur, lanjutkan proses instalasi. Buat akun pengguna dan password Anda.</p>
-        </section>
+            <section id="bios" class="card">
+                <h2>4. Masuk BIOS & Boot Priority</h2>
+                <p>Restart PC, masuk ke BIOS (tekan F2/F12/Del), lalu atur <strong>Boot Priority</strong> agar USB berada di urutan pertama.</p>
+                <figure>
+                    <img src="6.png" alt="Menu BIOS">
+                    <figcaption>Tampilan umum menu BIOS/UEFI.</figcaption>
+                </figure>
+                <figure>
+                    <img src="7.png" alt="Boot Priority">
+                    <figcaption>Mengatur boot priority ke USB drive.</figcaption>
+                </figure>
+            </section>
 
-        <section class="step">
-            <h2>5. Pengaturan Dual Boot (GRUB Customizer)</h2>
-            <p>Setelah instalasi selesai, PC mungkin akan langsung boot ke Pop!_OS. Anda perlu mengatur agar muncul menu pilihan saat startup.</p>
-            <ul>
-                <li>Boot ke Pop!_OS yang sudah terinstal.</li>
-                <li>Buka aplikasi Terminal.</li>
-                <li>Jalankan perintah berikut satu per satu untuk menginstal os-prober dan grub-customizer (tekan Enter setelah setiap baris dan masukkan password jika diminta):</li>
+            <section id="instalasi" class="card">
+                <h2>5. Proses Instalasi Pop!_OS</h2>
+                <p>Saat instalasi berjalan, pilih bahasa. Pada menu "How would you like to install?", pilih <strong>"Custom (Advanced)"</strong>.</p>
+                <figure>
+                    <img src="8.png" alt="Custom Install">
+                    <figcaption>Pilih "Custom (Advanced)" untuk pengaturan partisi manual.</figcaption>
+                </figure>
+
+                <h3>Konfigurasi Partisi (Wajib):</h3>
+                <ol>
+                    <li>
+                        <strong>Partisi EFI (Boot)</strong>: 1GB (FAT32) -> <em>Boot / EFI System Partition</em>
+                        <figure><img src="9.png" alt="Partisi EFI"></figure>
+                    </li>
+                    <li>
+                        <strong>Partisi Swap</strong>: 4GB - 8GB -> <em>Linux Swap</em>
+                        <figure><img src="10.png" alt="Partisi Swap"></figure>
+                    </li>
+                    <li>
+                        <strong>Partisi Root (/)</strong>: 30GB - 50GB -> <em>Ext4 (Root)</em>
+                        <figure><img src="11.png" alt="Partisi Root"></figure>
+                    </li>
+                    <li>
+                        <strong>Partisi Home (/home)</strong>: Sisa Ruang -> <em>Ext4 (Home)</em>
+                        <figure><img src="12.png" alt="Partisi Home"></figure>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="grub" class="card">
+                <h2>6. Pengaturan Dual Boot (GRUB)</h2>
+                <p>Setelah instalasi selesai dan masuk ke Pop!_OS, buka Terminal dan jalankan perintah ini untuk memunculkan menu Windows:</p>
+                
                 <pre><code>sudo apt update
 sudo apt install os-prober
 sudo os-prober
@@ -185,44 +149,55 @@ sudo update-grub
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 sudo apt update
 sudo apt install grub-customizer</code></pre>
-            </ul>
-            <figure>
-                <img src="13.png" alt="Screenshot Terminal dengan Perintah Instalasi Grub Customizer">
-                <figcaption>Menginstal os-prober dan grub-customizer melalui Terminal.</figcaption>
-            </figure>
-            <ul>
-                <li>Setelah instalasi grub-customizer selesai, buka aplikasinya (cari "Grub Customizer" di menu aplikasi).</li>
-                <li>Di Grub Customizer, Anda bisa mengatur waktu tunggu menu boot (misalnya 10 detik) dan memastikan entri Windows Boot Manager terlihat. Simpan perubahan.</li>
-            </ul>
-            <figure>
-                <img src="14.png" alt="Screenshot Grub Customizer">
-                <figcaption>Menyesuaikan pengaturan di Grub Customizer.</figcaption>
-            </figure>
-            <ul>
-                <li>Restart PC Anda. Kembali masuk ke *BIOS/UEFI*.</li>
-                <li>Di bagian *Boot Options, pastikan **"Pop!_OS"* (atau "ubuntu" jika Pop!_OS tidak eksplisit) adalah pilihan boot pertama. Simpan dan keluar.</li>
-            </ul>
-            <p>Sekarang, setiap kali Anda menyalakan PC, Anda akan melihat menu yang memungkinkan Anda memilih untuk boot ke Pop!_OS atau Windows Boot Manager.</p>
-            <figure>
-                <img src="15.png" alt="Screenshot Menu Dual Boot">
-                <figcaption>Menu boot yang memungkinkan Anda memilih OS.</figcaption>
-            </figure>
-            <h1 style="color: lightskyblue;">Selamat! Anda telah berhasil menginstal Pop!_OS dalam konfigurasi dual boot dengan Windows 11.</h1>
-        </section>
-        <h3 style="color: teal;">
-            <br>
-            <br>
-            <br>
-            <br>Web Ini Dibuat oleh : Moh.Nur Sukma Bayu Aji
-           <br> Kelas : IM24B
-           <br> NIM : 102240052
-           <br> Prodi : Informatika
-           <br> Perguruan Tinggi : Institut Teknologi Dan Sains Nahdlatul Ulama Pekalongan
-        </h3>
-    </main>
+                
+                <figure>
+                    <img src="13.png" alt="Terminal">
+                    <figcaption>Install os-prober & grub-customizer.</figcaption>
+                </figure>
 
-    <footer>
-        <p>&copy; 2025 Panduan Instalasi Pop!_OS.</p>
-    </footer>
+                <p>Buka aplikasi <strong>Grub Customizer</strong>, atur waktu tunggu, dan simpan.</p>
+                <figure>
+                    <img src="14.png" alt="Grub Customizer">
+                    <figcaption>Pastikan Windows Boot Manager terdeteksi.</figcaption>
+                </figure>
+                <p>Restart dan nikmati Dual Boot Anda!</p>
+                <figure>
+                    <img src="15.png" alt="Menu Dual Boot">
+                    <figcaption>Menu boot final.</figcaption>
+                </figure>
+                
+                <div style="background: rgba(56, 189, 248, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-top: 20px;">
+                    <h3 style="margin:0; color: var(--accent);">Selamat! Instalasi Berhasil.</h3>
+                    <p style="margin:0;">Anda telah berhasil menginstal Pop!_OS berdampingan dengan Windows 11.</p>
+                </div>
+            </section>
+
+            <section id="profil" class="card" style="border-color: var(--accent);">
+                <h2>Profil Penulis</h2>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div><strong>Nama:</strong> Moh.Nur Sukma Bayu Aji</div>
+                    <div><strong>NIM:</strong> 102240052</div>
+                    <div><strong>Kelas:</strong> IM24B</div>
+                    <div><strong>Prodi:</strong> Informatika</div>
+                    <div><strong>Kampus:</strong> Institut Teknologi Dan Sains Nahdlatul Ulama Pekalongan</div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2025 Panduan Instalasi Pop!_OS.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

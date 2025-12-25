@@ -6,54 +6,63 @@
     <title>Tentang Pop!_OS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Tentang Pop!_OS</h1>
-        <nav>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Pop!_OS Guide</h2>
+                <p>Informasi Distro</p>
+            </div>
+            
+            <div class="menu-label">Navigasi</div>
             <ul>
-                <li><a href="index.html">Prosedur Instalasi</a></li>
-                <li><a href="popos-info.html">Tentang Pop!_OS</a></li>
+                <li><a href="#apa-itu">Apa itu Pop!_OS?</a></li>
+                <li><a href="#fitur">Fitur Unggulan</a></li>
+                <li><a href="#sejarah">Sejarah</a></li>
+            </ul>
+
+            <div class="menu-label">Halaman Lain</div>
+            <ul>
+                <li><a href="index.html" style="color: var(--accent);">← Kembali ke Install</a></li>
+                <li><a href="tugas-os.html" style="color: var(--accent);">Tugas Sistem Operasi</a></li>
             </ul>
         </nav>
-    </header>
 
-    <main>
-        <section class="description">
-            <h2>Apa itu Pop!_OS?</h2>
-            <p>Pop!_OS adalah sistem operasi berbasis Linux yang dikembangkan oleh System76, sebuah produsen komputer yang fokus pada perangkat keras Linux. Dirilis pertama kali pada tahun 2017, Pop!_OS dirancang untuk memberikan pengalaman pengguna yang modern, efisien, dan intuitif, terutama bagi para pengembang, seniman digital, dan ilmuwan. Ini adalah distribusi Linux yang sangat populer karena kombinasi estetika yang menarik, fitur-fitur produktivitas yang kuat, dan dukungan hardware yang sangat baik.</p>
-            <p>Pop!_OS menggunakan GNOME sebagai lingkungan desktop dasarnya, tetapi System76 telah memodifikasinya secara signifikan untuk menciptakan "COSMIC Desktop" yang lebih berorientasi pada alur kerja dan produktivitas. Fitur-fitur seperti tiling windows otomatis, workspaces yang dinamis, dan launcher yang dapat dicari membuat Pop!_OS menjadi pilihan yang sangat baik bagi pengguna yang mencari efisiensi.</p>
-            <figure>
-                <img src="1.2.png" alt="Screenshot Desktop Pop!_OS">
-                <figcaption>Tampilan desktop Pop!_OS yang bersih dan fungsional. 
-</figcaption>
-            </figure>
-        </section>
+        <main class="content">
+            <header>
+                <h1>Tentang Pop!_OS</h1>
+                <p>Distribusi Linux modern untuk pengembang dan kreator.</p>
+            </header>
 
-        <section class="features">
-            <h2>Fitur Unggulan Pop!_OS</h2>
-            <ul>
-                <li>*COSMIC Desktop:* Lingkungan desktop yang dioptimalkan untuk alur kerja, dengan tiling windows otomatis, workspaces dinamis, dan keyboard navigation yang kuat.</li>
-                <li>*Dukungan GPU yang Sangat Baik:* Tersedia ISO khusus untuk kartu grafis NVIDIA, memastikan instalasi driver yang mulus dan performa gaming atau rendering yang optimal.</li>
-                <li>*Pop!_Shop:* Pusat aplikasi yang mudah digunakan untuk menginstal perangkat lunak, termasuk aplikasi populer dan paket Flatpak.</li>
-                <li>*Enkripsi Disk Penuh (FDE):* Opsi enkripsi seluruh disk yang mudah diatur selama instalasi untuk keamanan data yang lebih baik.</li>
-                <li>*Reset OS:* Fitur unik yang memungkinkan pengguna untuk menginstal ulang sistem operasi tanpa kehilangan data di partisi Home mereka, sangat berguna untuk menjaga sistem tetap bersih.</li>
-                <li>*Distribusi untuk Kreator dan Gamer:* Dengan fokus pada performa dan pengalaman pengguna, Pop!_OS adalah pilihan yang populer di kalangan gamer, pengembang, dan individu kreatif.</li>
-            </ul>
-        </section>
+            <section id="apa-itu" class="card">
+                <h2>Apa itu Pop!_OS?</h2>
+                <p>Pop!_OS adalah sistem operasi berbasis Linux yang dikembangkan oleh <strong>System76</strong>. OS ini dirancang untuk memberikan pengalaman pengguna yang modern, efisien, dan intuitif.</p>
+                <figure>
+                    <img src="1.2.png" alt="Pop OS Desktop">
+                    <figcaption>Tampilan COSMIC Desktop yang bersih</figcaption>
+                </figure>
+            </section>
 
-        <section class="history">
-            <h2>Sejarah Pop!_OS</h2>
-            <p>Pop!_OS pertama kali diumumkan oleh System76 pada tahun 2017. Awalnya, System76 mengandalkan distribusi Ubuntu standar pada perangkat keras mereka. Namun, mereka memutuskan untuk mengembangkan sistem operasi mereka sendiri untuk memberikan pengalaman yang lebih terintegrasi dan dioptimalkan bagi pelanggan mereka, serta untuk memiliki kendali penuh atas arah pengembangan.</p>
-            <p>Versi pertama Pop!_OS didasarkan pada Ubuntu 17.10 dan dengan cepat mendapatkan perhatian karena pendekatannya yang berorientasi pada pengguna dan dukungan hardware yang solid. Sejak itu, Pop!_OS terus berkembang dengan rilis-rilis baru yang mengikuti jadwal rilis Ubuntu (biasanya setiap 6 bulan atau 2 tahun untuk LTS - Long Term Support). Setiap rilis membawa perbaikan, fitur baru, dan peningkatan performa.</p>
-            <p>Salah satu tonggak penting adalah pengembangan COSMIC Desktop, yang merupakan garpu (fork) dari GNOME Shell dengan banyak penyesuaian dari System76. Hal ini menunjukkan komitmen mereka untuk memberikan pengalaman desktop yang unik dan fungsional. Pada tahun 2021, System76 mengumumkan rencana untuk menulis ulang COSMIC Desktop sepenuhnya dalam bahasa pemrograman Rust, menjanjikan kinerja dan fleksibilitas yang lebih besar di masa depan.</p>
-        </section>
-    </main>
+            <section id="fitur" class="card">
+                <h2>Fitur Unggulan</h2>
+                <ul>
+                    <li><strong>Auto Tiling:</strong> Jendela aplikasi otomatis tertata rapi tanpa perlu digeser manual.</li>
+                    <li><strong>NVIDIA Driver:</strong> Tersedia ISO khusus dengan driver NVIDIA yang sudah terinstal (sangat jarang di distro lain).</li>
+                    <li><strong>Pop!_Shop:</strong> Toko aplikasi yang mudah digunakan.</li>
+                    <li><strong>Workflow Keyboard:</strong> Didesain agar pengguna bisa menavigasi sistem tanpa menyentuh mouse.</li>
+                </ul>
+            </section>
 
-    <footer>
-        <p>&copy; 2025 Panduan Instalasi Pop!_OS.</p>
-    </footer>
+            <section id="sejarah" class="card">
+                <h2>Sejarah Singkat</h2>
+                <p>Dirilis pertama kali pada tahun 2017, System76 awalnya menggunakan Ubuntu standar pada laptop mereka. Namun, mereka memutuskan untuk membuat OS sendiri untuk mengoptimalkan hardware dan software.</p>
+                <p>Sekarang, mereka sedang mengembangkan Desktop Environment sendiri bernama <strong>COSMIC</strong> (berbasis Rust) yang akan memisahkan diri dari ketergantungan pada GNOME.</p>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

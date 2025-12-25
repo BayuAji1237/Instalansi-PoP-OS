@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Sistem Operasi - Jawaban Lengkap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-os.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Tugas OS</h2>
+                <p>Nama:Moh.Nur Sukma Bayu Aji</p>
+                <p>NIM:102240052 </p>
+            </div>
+            <ul>
+                <li><a href="#q1">1. Struktur OS</a></li>
+                <li><a href="#q2">2. Siklus Proses</a></li>
+                <li><a href="#q3">3. Konsep Thread</a></li>
+                <li><a href="#q4">4. CPU Scheduling</a></li>
+                <li><a href="#q5">5. Sinkronisasi</a></li>
+                <li><a href="#q6">6. Deadlock</a></li>
+                <li><a href="#q7">7. Manajemen Storage</a></li>
+                <li><a href="#q8">8. Alokasi File</a></li>
+                <li class="back-link">
+                    <li><a href="index.html" style="color: var(--accent);">← Kembali ke Install</a></li>
+                    <li><a href="popos-info.html" style="color: var(--accent);">Tentang Pop!_OS</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>Jawaban Tugas Sistem Operasi</h1>
+                <p>Analisis mendalam mengenai konsep, manajemen, dan algoritma sistem operasi.</p>
+            </header>
+
+            <section id="q1" class="card">
+                <h2>1. Layered Approach vs Client-Server</h2>
+                <div class="answer-body">
+                    <h3>Layered Approach (Pendekatan Berlapis)</h3>
+                    <p>Dalam pendekatan ini, sistem operasi dibagi menjadi beberapa lapisan (layer). Lapisan terbawah (layer 0) adalah perangkat keras, dan lapisan teratas (layer N) adalah antarmuka pengguna. Setiap lapisan hanya berkomunikasi dengan lapisan tepat di atas atau di bawahnya.</p>
+                    <ul>
+                        <li><strong>Kelebihan:</strong> Modularitas tinggi memudahkan debugging dan verifikasi. Jika ada error di satu layer, tidak perlu membongkar seluruh sistem.</li>
+                        <li><strong>Kekurangan:</strong> Performa cenderung lebih lambat karena setiap permintaan user harus menembus banyak lapisan untuk mencapai hardware.</li>
+                    </ul>
+
+                    <h3>Client-Server Model (Microkernel)</h3>
+                    <p>Model ini memindahkan sebanyak mungkin fungsi dari kernel ke ruang pengguna (user space). Kernel hanya menyediakan fungsi dasar (komunikasi pesan). Modul lain bekerja sebagai "Server" yang melayani permintaan "Client" (aplikasi user).</p>
+                    <ul>
+                        <li><strong>Kelebihan:</strong> Keamanan dan reliabilitas tinggi. Jika satu layanan (misal: print server) crash, sistem operasi utama tidak ikut crash. Mudah diperluas (scalable).</li>
+                        <li><strong>Kekurangan:</strong> Overhead kinerja akibat komunikasi yang intensif (message passing) antara client dan server.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="q2" class="card">
+                <h2>2. Siklus Hidup Proses & PCB</h2>
+                <div class="answer-body">
+                    <h3>5 Keadaan Utama Proses (Process States)</h3>
+                    <ol>
+                        <li><strong>New:</strong> Proses sedang dibuat.</li>
+                        <li><strong>Ready:</strong> Proses menunggu giliran untuk dieksekusi oleh CPU.</li>
+                        <li><strong>Running:</strong> Instruksi sedang dieksekusi.</li>
+                        <li><strong>Waiting:</strong> Proses menunggu kejadian tertentu (misal: input I/O).</li>
+                        <li><strong>Terminated:</strong> Proses selesai dieksekusi.</li>
+                    </ol>
+                    
+                    <h3>Process Control Block (PCB)</h3>
+                    <p>PCB adalah struktur data inti yang menyimpan informasi spesifik untuk setiap proses, seperti: <em>Process State, Program Counter, CPU Registers, Informasi Manajemen Memori,</em> dan <em>Informasi Akunting</em>. Tanpa PCB, OS tidak bisa melacak status proses.</p>
+
+                    <h3>Context Switch</h3>
+                    <p>Mekanisme menyimpan status proses saat ini (ke dalam PCB-nya) dan memuat status proses baru (dari PCB lain) agar bisa dijalankan. Dampaknya adalah <strong>overhead</strong> waktu; saat switching terjadi, CPU tidak melakukan kerja produktif bagi user.</p>
+                </div>
+            </section>
+
+            <section id="q3" class="card">
+                <h2>3. Konsep Thread & Multithreading</h2>
+                <div class="answer-body">
+                    <p><strong>Thread</strong> adalah unit dasar dari pemanfaatan CPU. Sebuah thread memiliki ID, program counter, register set, dan stack sendiri, tetapi berbagi kode, data, dan sumber daya OS dengan thread lain dalam satu proses. <strong>Proses (Heavyweight)</strong> memiliki ruang memori terpisah, sedangkan <strong>Thread (Lightweight)</strong> berbagi ruang memori yang sama.</p>
+
+                    <h3>Model Multithreading</h3>
+                    <div class="grid-3">
+                        <div class="grid-item">
+                            <h4>Many-to-One</h4>
+                            <p>Banyak thread pengguna dipetakan ke satu thread kernel.</p>
+                            <small><strong>Kelemahan:</strong> Jika satu thread memblokir, semua terblokir. Tidak bisa jalan paralel di multicore.</small>
+                        </div>
+                        <div class="grid-item">
+                            <h4>One-to-One</h4>
+                            <p>Setiap thread pengguna dipetakan ke satu thread kernel.</p>
+                            <small><strong>Kelebihan:</strong> Konkurensi tinggi. <strong>Kelemahan:</strong> Beban pembuatan thread kernel berat.</small>
+                        </div>
+                        <div class="grid-item">
+                            <h4>Many-to-Many</h4>
+                            <p>Banyak thread pengguna dipetakan ke jumlah thread kernel yang sama atau lebih sedikit.</p>
+                            <small><strong>Kelebihan:</strong> Paling fleksibel dan efisien.</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="q4" class="card">
+                <h2>4. CPU Scheduling</h2>
+                <div class="answer-body">
+                    <h3>Terminologi</h3>
+                    <ul>
+                        <li><strong>Burst Time:</strong> Waktu yang dibutuhkan proses untuk eksekusi CPU.</li>
+                        <li><strong>Turnaround Time:</strong> Waktu dari submit sampai selesai.</li>
+                        <li><strong>Waiting Time:</strong> Total waktu proses menunggu di ready queue.</li>
+                    </ul>
+
+                    <h3>Jenis Scheduler</h3>
+                    <ul>
+                        <li><strong>Long-Term (Job Scheduler):</strong> Memilih proses dari storage ke memori (mengatur degree of multiprogramming).</li>
+                        <li><strong>Medium-Term:</strong> Melakukan swapping (swap-out/swap-in) untuk menghemat RAM.</li>
+                        <li><strong>Short-Term (CPU Scheduler):</strong> Memilih proses di memori yang siap dieksekusi CPU (sangat cepat).</li>
+                    </ul>
+
+                    <h3>Algoritma Penjadwalan</h3>
+                    <ul>
+                        <li><strong>FCFS:</strong> Adil dalam antrian, tapi bisa menyebabkan <em>convoy effect</em> (proses pendek menunggu proses panjang).</li>
+                        <li><strong>SJF (Shortest Job First):</strong> Optimal meminimalkan waiting time, tapi sulit memprediksi burst time dan bisa menyebabkan starvation.</li>
+                        <li><strong>Priority Scheduling:</strong> Menjalankan proses penting dulu, tapi rentan starvation (solusi: aging).</li>
+                        <li><strong>Round Robin:</strong> Paling adil untuk time-sharing, responsif, tapi performa bergantung pada ukuran <em>time quantum</em>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="q5" class="card">
+                <h2>5. Sinkronisasi Proses</h2>
+                <div class="answer-body">
+                    <p>Sinkronisasi diperlukan untuk menghindari <em>Race Condition</em> saat beberapa proses mengakses data yang sama (shared data) secara bersamaan.</p>
+
+                    <h3>Critical Section & 3 Syarat Utama</h3>
+                    <ol>
+                        <li><strong>Mutual Exclusion:</strong> Jika proses A sedang di critical section, proses lain tidak boleh masuk.</li>
+                        <li><strong>Progress:</strong> Jika tidak ada yang di critical section, proses yang ingin masuk harus diizinkan (tidak boleh deadlock).</li>
+                        <li><strong>Bounded Waiting:</strong> Harus ada batasan waktu tunggu agar proses tidak menunggu selamanya (starvation).</li>
+                    </ol>
+
+                    <h3>Masalah Klasik</h3>
+                    <ul>
+                        <li><strong>Producer-Consumer:</strong> Mengelola buffer agar producer tidak mengisi buffer penuh dan consumer tidak mengambil dari buffer kosong.</li>
+                        <li><strong>Dining Philosophers:</strong> Ilustrasi alokasi sumber daya terbatas (sumpit) di antara proses yang saling membutuhkan untuk menghindari deadlock.</li>
+                        <li><strong>Readers-Writers:</strong> Mengatur akses database agar penulis memiliki akses eksklusif, tapi pembaca bisa akses bersamaan.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="q6" class="card">
+                <h2>6. Deadlock</h2>
+                <div class="answer-body">
+                    <p>Deadlock adalah situasi di mana sekumpulan proses saling menunggu sumber daya yang dipegang oleh proses lain dalam kumpulan tersebut, sehingga tidak ada yang bisa berjalan.</p>
+                    
+                    <h3>4 Kondisi Penyebab (Coffman Conditions)</h3>
+                    <p>Deadlock hanya terjadi jika 4 hal ini terpenuhi bersamaan: <em>Mutual Exclusion, Hold and Wait, No Preemption,</em> dan <em>Circular Wait</em>.</p>
+
+                    <h3>Metode Penanganan</h3>
+                    <ul>
+                        <li><strong>Pencegahan (Prevention):</strong> Memastikan minimal satu dari 4 kondisi di atas tidak terjadi. (Misal: melarang hold and wait).</li>
+                        <li><strong>Penghindaran (Avoidance):</strong> OS memeriksa status resource sebelum alokasi. Contoh: <em>Algoritma Banker</em>.</li>
+                        <li><strong>Deteksi & Pemulihan:</strong> Membiarkan deadlock terjadi, mendeteksinya, lalu mematikan proses atau preemption resource.</li>
+                        <li><strong>Pengabaian (Ostrich Algorithm):</strong> Menganggap deadlock tidak akan terjadi (dipakai di Windows/Linux untuk performa).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="q7" class="card">
+                <h2>7. Manajemen Media Penyimpanan</h2>
+                <div class="answer-body">
+                    <p>Sistem operasi bertanggung jawab mengabstraksi perangkat fisik (HDD/SSD) menjadi unit logis (File). Tujuannya adalah efisiensi, kemudahan akses, dan keamanan.</p>
+
+                    <h3>Fungsi Utama</h3>
+                    <ul>
+                        <li><strong>Alokasi Ruang:</strong> Mengatur blok mana di disk yang dipakai oleh file.</li>
+                        <li><strong>Manajemen Ruang Kosong:</strong> Melacak sektor disk yang belum terpakai.</li>
+                        <li><strong>Penanganan Fragmentasi:</strong> Mengelola data yang terpecah-pecah agar performa baca/tulis tetap optimal (terutama di HDD).</li>
+                        <li><strong>Keandalan (Disk Scheduling):</strong> Mengatur pergerakan head disk (pada HDD) untuk meminimalkan waktu pencarian (seek time).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="q8" class="card">
+                <h2>8. Teknik Alokasi Ruang Penyimpanan</h2>
+                <div class="answer-body">
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Teknik</th>
+                                    <th>Cara Kerja</th>
+                                    <th>Kelebihan & Kekurangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Contiguous Allocation</strong></td>
+                                    <td>Setiap file menempati sekumpulan blok yang berurutan di disk.</td>
+                                    <td>(+) Read/write sangat cepat.<br>(-) Fragmentasi eksternal tinggi, sulit memperbesar file.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Linked Allocation</strong></td>
+                                    <td>Setiap blok file memiliki pointer ke blok berikutnya (seperti rantai).</td>
+                                    <td>(+) Tidak ada fragmentasi eksternal, mudah memperbesar file.<br>(-) Akses acak (random access) lambat, boros ruang untuk pointer.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Indexed Allocation</strong></td>
+                                    <td>Satu blok khusus (index block) menampung semua pointer ke blok data file.</td>
+                                    <td>(+) Mendukung akses acak cepat, tidak ada fragmentasi eksternal.<br>(-) Overhead memori untuk blok indeks (boros untuk file kecil).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2025 - Tugas Sistem Operasi. Dibuat dengan HTML & CSS.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
