@@ -1,0 +1,205 @@
+
+* {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif; 
+    line-height: 1.7;
+    background-color: #f8f9fa;
+    color: #212529; 
+    font-size: 16px;
+}
+
+header {
+    background-color: #2d2d2d; 
+    color: #f8f9fa;
+    padding: 1.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid #48B9C7;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 700;
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: #3f3f3f; 
+}
+
+nav ul li a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    transition: all 0.3s ease; 
+}
+
+nav ul li a:hover {
+    background-color: #48B9C7; 
+    color: #ffffff;
+}
+
+main {
+    padding: 25px;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+    border-radius: 12px; 
+}
+
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #2d2d2d;
+    border-bottom: 3px solid #48B9C7;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #48B9C7; /* Judul H3 menggunakan warna aksen */
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-bottom: 15px;
+    padding-left: 20px; 
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.intro, .step, .description, .features, .history {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border: 1px solid #eee; 
+    border-left: 5px solid #48B9C7; 
+    border-radius: 8px;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+.step figure img, .intro figure img {
+    margin-left: 20px;
+
+}
+
+.step figcaption, .intro figcaption {
+    margin-left: 20px;
+}
+
+figure {
+    margin: 20px 0;
+    text-align: center;
+}
+
+figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+figure:hover img {
+    transform: scale(1.03); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+
+figcaption {
+    font-style: italic;
+    margin-top: 12px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+
+pre {
+    background-color: #2d2d2d; 
+    color: #f8f9fa; 
+    font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+    font-size: 0.95em;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto; 
+    white-space: pre;
+    margin: 20px 0;
+    border-left: 4px solid #F39C12; 
+}
+
+
+code {
+    font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+    background-color: #e9ecef; 
+    color: #c7254e; 
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+
+a {
+    color: #48B9C7; 
+    text-decoration: none;
+    font-weight: 700; /* Membuat link lebih jelas */
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #3a9aa8; /* Warna link saat di-hover */
+    text-decoration: underline;
+}
+
+/* Link di dalam navigasi tidak perlu bold */
+nav a {
+    font-weight: 400;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    background-color: #2d2d2d;
+    color: #aaa;
+    font-size: 0.9em;
+    border-top: 1px solid #3f3f3f;
+}
+
+/* Styling untuk gambar Pop!_OS desktop */
+.description img {
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+}
